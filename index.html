@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      function submitForm() {
+        var form = document.getElementById('form');
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        // .then(data => {
+        //   if (data.result === 'success') {
+        //     alert('Data submitted successfully!');
+        //   } else {
+        //     alert('Error: ' + data.error);
+        //   }
+        // })
+        // .then(() => {window.location.reload();})
+        .catch(error => console.error('Error:', error));
+
+        
+        document.forms['form'].reset()
+        document.getElementById("employeeID").focus();
+        
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <form id="form" action="https://script.google.com/macros/s/AKfycbxdIDuOLgNgPR6_JDT5hqbIkb2SLKaV6qm73UoBPHGMyN7yDjIe_RtLIL6EtuiYnAL8/exec" 
+      method="post" onsubmit="event.preventDefault(); submitForm();"> <br><br>
+
+      <img src="Biotech.png" alt="Biotech logo" width="150" height="150" class="center"><br>
+
+        <h1>AIC LOGBOOK</h1>
+        <h1>AUTOMATED SYSTEM</h1>
+        <label class="version" for="owner">V 1.0.0</label><br><br>
+
+          <label for="employeeID">SCAN HERE:</label><br><br>
+          <input type="number" id="employeeID" name="Employee ID" autocomplete="off" placeholder="Employee ID"><br>
+          <input type="submit" value="Submit" class="submit" onclick="message()"> 
+          <div class="message">
+          <div class="success" id="success">Your scan is recorded!&#128512;</div>
+          <div class="danger" id="danger">Please scan again.Thank you!</div>
+          </div>
+          <label class="owner" for="owner">©2024 Biotech Farms Inc.</label>
+      </form>
+     
+    </div>
+    <script src="index.js"></script>
+    
+  </body>
+</html>
+
